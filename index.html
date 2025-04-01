@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UserPass</title>
+
+        <!-- TAILWIND CSS -->
+        <link href="./styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="m-5 p-5 w-fit border border-gray-300 rounded-xl">
+            <h3 class="text-lg font-semibold text-center">UserPass Page</h3>
+            <div class="flex flex-col p-3">
+                <label for="username" class="text-xs">USERNAME</label>
+                <input type="text" id="username" class="mb-3 p-1 border border-black rounded-lg">
+
+                <label for="password" class="text-xs">PASSWORD</label>
+                <input type="text" id="password" class="mb-3 p-1 border border-black rounded-lg">
+
+                <button onclick="submit()" class="p-1 border border-black rounded-lg bg-gray-200 hover:bg-gray-300">SUBMIT</button>
+            </div>
+        </div>
+
+        <script>
+            function submit(){
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                console.log("USERNAME:" + username);
+                console.log("PASSWORD:" + password);
+
+                if(checkPassword(password)) {
+                    alert("Welcome, " + username + "!");
+                } else {
+                    alert("PASSWORD MUST BE MORE THAN OR EQUAL TO 8 CHARACTERS AND MUST CONTAIN BOTH UPPERCASE AND LOWERCASE CHARACTERS.")
+                }
+            }
+
+            function checkPassword(password) {
+                var hasLowerCase = false;
+                var hasUpperCase = false;
+
+                if(password.length < 8) {
+                    return false;
+                }
+
+                for(var i = 0; i < password.length; i++) {
+                    if(password[i] == password[i].toLowerCase()) {
+                        hasLowerCase = true;
+                    }
+                    if(password[i] == password[i].toUpperCase()) {
+                        hasUpperCase = true;
+                    }
+
+                    if(hasLowerCase && hasUpperCase) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        </script>
+    </body>
+</html>
